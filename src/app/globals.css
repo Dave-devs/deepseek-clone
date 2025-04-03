@@ -8,6 +8,11 @@
 }
 
 :root {
+  --blue: #2563eb;
+  --purple: #8b5cf6;
+  --dark: #0f172a;
+  --light: #f8fafc;
+  --gray: #64748b;
   --radius: 0.5rem;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -49,6 +54,11 @@
 }
 
 .dark {
+  --blue: #2563eb;
+  --purple: #8b5cf6;
+  --dark: #0f172a;
+  --light: #f8fafc;
+  --gray: #64748b;
   --background: oklch(0.2 0.005 260);
   --foreground: oklch(0.98 0.005 240);
   --card: oklch(0.2 0.005 260);
@@ -126,28 +136,22 @@
   * {
     @apply border-border outline-ring/50;
   }
-
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-
   .glass {
-    @apply bg-white/70 dark:bg-deepseek-dark/70 backdrop-blur-lg border border-white/20 dark:border-white/10;
+    @apply bg-white/70 dark:bg-[#0f172a]/70 backdrop-blur-lg border border-white/20 dark:border-white/10;
   }
-
   .deepseek-gradient {
-    @apply bg-gradient-to-r from-deepseek-blue to-deepseek-purple;
+    @apply bg-gradient-to-r from-[#2563eb] to-[#8b5cf6];
   }
-
   .deepseek-gradient-text {
-    @apply bg-gradient-to-r from-deepseek-blue to-deepseek-purple bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#2563eb] to-[#8b5cf6] bg-clip-text text-transparent;
   }
-
   html {
     @apply scroll-smooth;
   }
-
   ::-webkit-scrollbar {
     display: none;
   }
