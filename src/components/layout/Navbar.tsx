@@ -24,7 +24,7 @@ export const Navbar = () => {
           <div className="hidden md:block">
             <div className="flex items-center gap-6">
               <Link
-                href={"/featues"}
+                href={"#features"}
                 className="text-foreground/80 hover:text-foreground transition-colors"
               >
                 Features
