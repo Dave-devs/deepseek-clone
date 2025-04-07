@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import { X, Menu } from "lucide-react";
+import { Button } from "../ui-custom/Button";
+import ThemeToggle from "@/lib/theme-toggle";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,24 +30,37 @@ export const Navbar = () => {
               >
                 Features
               </Link>
-              <Link href={"/pricing"} className="text-foreground/80 hover:text-foreground transition-colors">
+              <Link
+                href={"/pricing"}
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
                 Pricing
               </Link>
-              <Link href={"/docs"} className="text-foreground/80 hover:text-foreground transition-colors">
+              <Link
+                href={"/docs"}
+                className="text-foreground/80 hover:text-foreground transition-colors"
+              >
                 Docs
               </Link>
+              {/* Themme Toggle Btn */}
+              <ThemeToggle />
+
+              {/* Try Deepseek Btn */}
               <Link href={"/chat"}>
-                <Button variant="default">Try Deepseek</Button>
+                <Button size="default">Try Deepseek</Button>
               </Link>
             </div>
           </div>
           {/* ******** Mobile Nav ******** */}
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} type="button" className="text-foreground">
-              {isOpen ? (<X className="size-6" />) : (<Menu className="size-6" />)}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              type="button"
+              className="text-foreground"
+            >
+              {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
             </button>
           </div>
-
         </div>
       </div>
       {/* ******** Mobile Nav Menu ******** */}
@@ -55,18 +69,30 @@ export const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               href={"/featues"}
-              className="block px-3 py-2 rounded-md text-base font-medium text-foreground/80 hover:bg-background/50 hover:text-foreground" onClick={() => setIsOpen(false)}
+              className="block px-3 py-2 rounded-md text-base font-medium text-foreground/80 hover:bg-background/50 hover:text-foreground"
+              onClick={() => setIsOpen(false)}
             >
               Features
             </Link>
-            <Link href={"/pricing"} className="block px-3 py-2 rounded-md text-base font-medium text-foreground/80 hover:bg-background/50 hover:text-foreground" onClick={() => setIsOpen(false)}>
+            <Link
+              href={"/pricing"}
+              className="block px-3 py-2 rounded-md text-base font-medium text-foreground/80 hover:bg-background/50 hover:text-foreground"
+              onClick={() => setIsOpen(false)}
+            >
               Pricing
             </Link>
-            <Link href={"/docs"} className="block px-3 py-2 rounded-md text-base font-medium text-foreground/80 hover:bg-background/50 hover:text-foreground" onClick={() => setIsOpen(false)}>
+            <Link
+              href={"/docs"}
+              className="block px-3 py-2 rounded-md text-base font-medium text-foreground/80 hover:bg-background/50 hover:text-foreground"
+              onClick={() => setIsOpen(false)}
+            >
               Docs
             </Link>
+            {/* Themme Toggle Btn */}
+            <ThemeToggle />
+            {/* Try Deepseek Btn */}
             <Link href={"/chat"} className="">
-              <Button variant="default">Try Deepseek</Button>
+              <Button size="default">Try Deepseek</Button>
             </Link>
           </div>
         </div>
