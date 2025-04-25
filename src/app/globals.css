@@ -158,4 +158,7 @@
   ::-webkit-scrollbar {
     display: none;
   }
+  .deepthink {
+    @apply bg-[#f8fafc] text-[#0f172a] hover:bg-[#64748b]/10;
+  }
 }

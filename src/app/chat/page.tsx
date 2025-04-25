@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui-custom/Button";
 import { AlignLeft } from "lucide-react";
 import ChatSidebar from "@/components/chat/ChatSidebar";
+import PromptBox from "@/components/chat/PromptBox";
 
 export default function Chat() {
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -59,6 +60,7 @@ export default function Chat() {
             <div></div>
           )}
           {/* Textarea */}
+          <PromptBox isLoading={isLoading} setIsLoading={setIsLoading} />
           {/* ******** Prompt Box ******** */}
           <p className="text-xs absolute bottom-1 text-muted-foreground">
             AI-generated for reference only
