@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Menu, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { Button } from "../ui-custom/Button";
 import { useClerk, UserButton } from "@clerk/nextjs";
 import { useAppContext } from "@/context/AppContext";
+import ChatHistory from "./ChatHistory";
 
 interface ChatSidebarProps {
   openSidebar: boolean;
@@ -17,6 +18,8 @@ export default function ChatSidebar({
   // Open clerk auth modal
   const { openSignIn } = useClerk();
   const { user } = useAppContext();
+  // Open Chat History
+  const [openHistory, setOpenHistory] = useState({id: 0, open: false});
   // Function to toggle Sidebar
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
@@ -81,8 +84,9 @@ export default function ChatSidebar({
 
         {/* Recent Chats */}
         <div className={`mt-8 text-sm ${openSidebar ? "block" : "hidden"}`}>
-          <p className="my-1">Recents</p>
+          <p className="my-1 text-[#64748b]">Recents</p>
           {/* Chat Label */}
+          <ChatHistory openHistory={openHistory} setOpenHistory={setOpenHistory} />
         </div>
       </div>
       {/* Deepeek QRCode & Profile Image */}
