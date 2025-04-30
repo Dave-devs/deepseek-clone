@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { Menu, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { Button } from "../ui-custom/Button";
+import { useClerk, UserButton } from "@clerk/nextjs";
+import { useAppContext } from "@/context/AppContext";
 
 interface ChatSidebarProps {
   openSidebar: boolean;
@@ -12,6 +14,9 @@ export default function ChatSidebar({
   openSidebar,
   setOpenSidebar,
 }: ChatSidebarProps) {
+  // Open clerk auth modal
+  const { openSignIn } = useClerk();
+  const { user } = useAppContext();
   // Function to toggle Sidebar
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
@@ -82,7 +87,7 @@ export default function ChatSidebar({
       </div>
       {/* Deepeek QRCode & Profile Image */}
       <div>
-        {/*  */}
+        {/* DeepSeek QRCode */}
         <div
           className={`flex items-center cursor-pointer group relative ${
             openSidebar
@@ -98,7 +103,9 @@ export default function ChatSidebar({
             className={openSidebar ? "size-5" : "size-6.5 mx-auto"}
           />
           <div
-            className={`absolute -top-60 pb-8 ${!openSidebar && "-right-40"} opacity-0 group-hover:opacity-100 hidden group-hover:block transition`}
+            className={`absolute -top-60 pb-8 ${
+              !openSidebar && "-right-40"
+            } opacity-0 group-hover:opacity-100 hidden group-hover:block transition`}
           >
             <div className=" flex flex-col relative w-max bg-accent text-sm p-3 rounded-lg shadow-lg">
               <Image
@@ -130,16 +137,27 @@ export default function ChatSidebar({
           )}
         </div>
 
-        {/*  */}
-        <div className={`flex items-center ${openSidebar ? "hover:bg-sidebar-accent-foreground/10 rounded-lg" : "justify-center w-full"} gap-3 text-sm p-2 mt-2 cursor-pointer`}>
-          <Image
-            src={"/profile-icon.svg"}
-            alt=""
-            width={40}
-            height={40}
-            className={"size-7"}
-          />
-          {openSidebar && (<span>My Profile</span>)}
+        {/* Profile Button */}
+        <div
+          onClick={() => (user ? null : openSignIn())}
+          className={`flex items-center ${
+            openSidebar
+              ? "hover:bg-sidebar-accent-foreground/10 rounded-lg"
+              : "justify-center w-full"
+          } gap-3 text-sm p-2 mt-2 cursor-pointer`}
+        >
+          {user ? (
+            <UserButton />
+          ) : (
+            <Image
+              src={"/profile-icon.svg"}
+              alt=""
+              width={40}
+              height={40}
+              className={"size-7"}
+            />
+          )}
+          {openSidebar && <span>My Profile</span>}
         </div>
       </div>
     </nav>
